@@ -44,7 +44,7 @@ function AddData() {
             });
 
             const data = await res.json();
-            if (res.status != 200 || !data) window.alert(`${data.error}`);
+            if (res.status !== 200 || !data) window.alert(`${data.error}`);
             else {
                 setDataInput({
                     end_year: '',
