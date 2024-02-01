@@ -4,6 +4,9 @@ const dataSchema = new mongoose.Schema({
     end_year: {
         type: Number
     },
+    start_year: {
+        type: Number
+    },
     intensity: {
         type: Number
     },
@@ -21,9 +24,6 @@ const dataSchema = new mongoose.Schema({
     },
     region: {
         type: String
-    },
-    start_year: {
-        type: Number
     },
     impact: {
         type: String

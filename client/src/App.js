@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
 
-  const [dataInput,setDataInput] = useState({
+  const [dataInput, setDataInput] = useState({
     end_year: '',
     intensity: '',
     sector: '',
@@ -22,8 +22,6 @@ function App() {
   });
 
   const handleOnChange = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
     const name = e.target.name;
     const value = e.target.value;
 
@@ -35,24 +33,51 @@ function App() {
 
     const { end_year, start_year, intensity, sector, topic, insight, url, region, impact, country, relevance, pestle, source, title, likelihood } = dataInput;
 
-    // console.log(end_year, start_year, intensity, sector, topic, insight, url, region, impact, country, relevance, pestle, source, title, likelihood);
+    try {
+      const res = await fetch('/add-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          end_year, start_year, intensity, sector, topic, insight, url, region, impact, country, relevance, pestle, source, title, likelihood
+        })
+      });
 
-    const res = await fetch('/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
+      const data = await res.json();
+      if (res.status != 200 || !data) window.alert(`${data.error}`);
+      else {
+        setDataInput({
+          end_year: '',
+          intensity: '',
+          sector: '',
+          topic: '',
+          insight: '',
+          url: '',
+          region: '',
+          start_year: '',
+          impact: '',
+          country: '',
+          relevance: '',
+          pestle: '',
+          source: '',
+          title: '',
+          likelihood: ''
+        });
+        window.alert(`${data.message}`);
       }
 
-      
-    })
+    } catch (error) {
+      console.log("Error: " + error);
+    }
   }
 
   return (
     <div className="App">
       <form onSubmit={handleOnSubmit}>
-        <div style={{margin:'10px'}}>
-          <label style={{fontSize:'20px', marginRight:'10px'}}>end_year : </label>
-          <input type="text" name='end_year' value={dataInput.end_year} style={{ padding: '2px', fontSize: '20px' }} onChange={handleOnChange}/>
+        <div style={{ margin: '10px' }}>
+          <label style={{ fontSize: '20px', marginRight: '10px' }}>end_year : </label>
+          <input type="text" name='end_year' value={dataInput.end_year} style={{ padding: '2px', fontSize: '20px' }} onChange={handleOnChange} />
         </div>
 
         <div style={{ margin: '10px' }}>
