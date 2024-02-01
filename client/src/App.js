@@ -1,12 +1,14 @@
 import React from 'react';
-import './App.css';
 import AddData from './component/AddData';
+import Home from './component/Home';
 
 function App() {
 
   return (
-    <div className="App">
-      <AddData />
+    <div>
+      {/* <AddData /> */}
+
+      <Home />
     </div>
   );
 }
