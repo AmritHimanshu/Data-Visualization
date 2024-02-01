@@ -6,9 +6,7 @@ const Data = require('../model/dataSchema');
 router.post('/getCardData', async (req, res) => {
     const { topic, sector, region } = req.body;
     try {
-        // console.log('Querying with:', { topic, sector, region });
         const data = await Data.find({topic, sector, region });
-        console.log(data);
         res.status(201).send(data);
     } catch (error) {
         console.log(error);
