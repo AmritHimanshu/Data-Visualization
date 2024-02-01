@@ -3,6 +3,19 @@ const router = express.Router();
 
 const Data = require('../model/dataSchema');
 
+router.post('/getCardData', async (req, res) => {
+    const { topic, sector, region } = req.body;
+    try {
+        // console.log('Querying with:', { topic, sector, region });
+        const data = await Data.find({topic, sector, region });
+        console.log(data);
+        res.status(201).send(data);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 router.post('/add-data', async (req, res) => {
     const { end_year, start_year, intensity, sector, topic, insight, url, region, impact, country, relevance, pestle, source, title, likelihood } = req.body;
 
