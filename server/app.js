@@ -1,10 +1,17 @@
 const express = require('express');
 const app = express();
+const dotenv = require('dotenv');
 
-app.get('/', (req, res) => {
-    res.send("Hello World");
-});
+dotenv.config({ path: './config.env' });
 
-app.listen(5000, () => {
-    console.log(`Server is running on port no 5000`);
+const PORT = process.env.PORT || 5000;
+
+require('./db/conn');
+
+app.use(express.json());
+
+app.use(require('./router/auth'));
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port no ${PORT}`);
 });
