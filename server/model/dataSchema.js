@@ -48,6 +48,6 @@ const dataSchema = new mongoose.Schema({
     },
 });
 
-const Data = mongoose.model('data', dataSchema);
+const Data = mongoose.model('DATA', dataSchema);
 
 module.exports = Data;

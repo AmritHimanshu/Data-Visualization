@@ -6,13 +6,24 @@ const Data = require('../model/dataSchema');
 router.post('/getCardData', async (req, res) => {
     const { topic, sector, region } = req.body;
     try {
-        const data = await Data.find({topic, sector, region });
+        const data = await Data.find({ topic, sector, region });
         res.status(201).send(data);
     } catch (error) {
         console.log(error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+
+router.post('/getPestle', async (req, res) => {
+    const { pestle, topic, sector } = req.body;
+    try {
+        const data = await Data.find({ pestle, topic, sector });
+        res.status(201).send(data);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+})
 
 router.post('/add-data', async (req, res) => {
     const { end_year, start_year, intensity, sector, topic, insight, url, region, impact, country, relevance, pestle, source, title, likelihood } = req.body;
