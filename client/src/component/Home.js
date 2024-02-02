@@ -207,7 +207,9 @@ function Home() {
 
                 <BarChart chartData={chartData} pestle={pestle} topic={topic} sector={sector} />
 
-                <PieChart chartData={chartData} pestle={pestle} topic={topic} sector={sector} />
+                <div style={{width:'50vw', textAlign:'center', margin:'auto', marginTop:'150px'}}>
+                    <PieChart chartData={chartData} pestle={pestle} topic={topic} sector={sector} />
+                </div>
             </div>
         </>
     )
